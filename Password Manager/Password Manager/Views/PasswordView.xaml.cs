@@ -42,6 +42,7 @@ namespace Password_Manager.Views
         {
             passwordViewModel.UpdateList();
             StackPanel.ItemsSource = passwordViewModel.PasswordCollection;
+            deletebtn.CommandParameter = PasswordViewModel.SelectedID;
         }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -55,8 +56,6 @@ namespace Password_Manager.Views
             pb_password.IsReadOnly = true;
             tb_addinfo.IsReadOnly = true;
             tb_nickname.IsReadOnly = true;
-            passwordViewModel.UpdateList();
-            StackPanel.ItemsSource = passwordViewModel.PasswordCollection;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -66,6 +65,21 @@ namespace Password_Manager.Views
             pb_password.IsReadOnly = false;
             tb_addinfo.IsReadOnly = false;
             tb_nickname.IsReadOnly = false;
+        }
+
+        private void addbtn_Click(object sender, RoutedEventArgs e)
+        {
+            tb_username.IsReadOnly = false;
+            tb_website.IsReadOnly = false;
+            pb_password.IsReadOnly = false;
+            tb_addinfo.IsReadOnly = false;
+            tb_nickname.IsReadOnly = false;
+            tb_username.Text = "";
+            tb_website.Text = "";
+            pb_password.Text = "";
+            tb_addinfo.Text = "";
+            tb_nickname.Text = "";
+            PasswordViewModel.SelectedID = -1;
         }
     }
 }

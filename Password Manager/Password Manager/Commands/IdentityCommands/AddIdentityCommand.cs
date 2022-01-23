@@ -13,7 +13,6 @@ namespace Password_Manager.Commands.IdentityCommands
     public class AddIdentityCommand : CommandBase
     {
         private IdentitiesViewModel viewModel;
-        private static int i = 0;
         public AddIdentityCommand(IdentitiesViewModel ivm)
         {
             viewModel = ivm;  
@@ -34,7 +33,12 @@ namespace Password_Manager.Commands.IdentityCommands
             model.Number = viewModel.Number;
             model.SecondAddress = viewModel.SecondAddress;
             model.Title = viewModel.Title;
-            DatabaseManager.Add(model.ToString(), i++, "Identities", false);
+
+            if (IdentitiesViewModel.SelectedID == -1)
+                DatabaseManager.Add(model.ToString(), viewModel.FindFirstId(), "Identities", false);
+            else
+                DatabaseManager.Add(model.ToString(), IdentitiesViewModel.SelectedID, "Identities", true);
+            IdentitiesViewModel.SelectedID = -1;
         }
 
     }

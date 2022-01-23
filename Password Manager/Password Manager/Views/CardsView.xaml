@@ -40,6 +40,8 @@
         <Label Content="Expiration Date" HorizontalAlignment="Left" Margin="242,187,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
         <TextBox x:Name="tb_additional" HorizontalAlignment="Left" Height="24" Margin="716,187,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Additional, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
         <Label Content="Additional" HorizontalAlignment="Left" Margin="582,187,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
+        <Button Name="deletebtn" Content="Delete" HorizontalAlignment="Left" Margin="787,273,0,0" VerticalAlignment="Top" Width="62" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedID}"/>
+        <Button Name="addbtn" Content="Clear" HorizontalAlignment="Left" Margin="720,273,0,0" VerticalAlignment="Top" Width="62" Click="addbtn_Click" />
 
     </Grid>
 </UserControl>

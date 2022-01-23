@@ -40,7 +40,6 @@ namespace Common
             Dictionary<int, string> returnDictionary = new Dictionary<int, string>();
             using (SqlCommand command = new SqlCommand(query, ConnectionManager.Connection))
             {
-                command.Parameters.AddWithValue("@tb", tableName);
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -71,6 +70,17 @@ namespace Common
                 }
             }
             return returnDictionary;
+        }
+
+        public static void Delete(string tableName, int id)
+        {
+            string query = $"DELETE FROM {tableName} WHERE id = @id";
+            using (SqlCommand command = new SqlCommand(query, ConnectionManager.Connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+            }
+            return;
         }
 
     }

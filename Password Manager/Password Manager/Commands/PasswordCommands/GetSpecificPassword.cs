@@ -19,11 +19,13 @@ namespace Password_Manager.Commands.PasswordCommands
         }
         public override void Execute(object parameter)
         {
-            viewModel.Password = viewModel.PasswordCollection[(int)parameter].Value;
-            viewModel.Additional = viewModel.PasswordCollection[(int)parameter].Additional;
-            viewModel.Nickname = viewModel.PasswordCollection[(int)parameter].Nickname;
-            viewModel.Username = viewModel.PasswordCollection[(int)parameter].Username;
-            viewModel.Website = viewModel.PasswordCollection[(int)parameter].Website;
+            PasswordModel passModel = viewModel.PasswordCollection.Find(t => t.Id == (int)parameter);
+            viewModel.Password = passModel.Value;
+            viewModel.Additional = passModel.Additional;
+            viewModel.Nickname = passModel.Nickname;
+            viewModel.Username = passModel.Username;
+            viewModel.Website = passModel.Website;
+            PasswordViewModel.SelectedID = (int)parameter;
         }
 
     }

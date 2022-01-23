@@ -19,20 +19,21 @@ namespace Password_Manager.Commands.IdentityCommands
         }
         public override void Execute(object parameter)
         {
-            int index = (int)parameter;
-            viewModel.Title = viewModel.IdentityCollection[index].Title;
-            viewModel.Gender = viewModel.IdentityCollection[index].Gender;
-            viewModel.FirstName = viewModel.IdentityCollection[index].FirstName;
-            viewModel.LastName = viewModel.IdentityCollection[index].LastName;
-            viewModel.Email = viewModel.IdentityCollection[index].Email;
-            viewModel.FirstAddress = viewModel.IdentityCollection[index].FirstAddress;
-            viewModel.SecondAddress = viewModel.IdentityCollection[index].SecondAddress;
-            viewModel.ZIPCode = viewModel.IdentityCollection[index].ZIPCode;
-            viewModel.City = viewModel.IdentityCollection[index].City;
-            viewModel.Country = viewModel.IdentityCollection[index].Country;
-            viewModel.Additional = viewModel.IdentityCollection[index].Additional;
-            viewModel.Number = viewModel.IdentityCollection[index].Number;
-            viewModel.Nickname = viewModel.IdentityCollection[index].Nickname;
+            IdentitiesModel identitiesModel = viewModel.IdentityCollection.Find(x => x.Id == (int)parameter);
+            viewModel.Title = identitiesModel.Title;
+            viewModel.Gender = identitiesModel.Gender;
+            viewModel.FirstName = identitiesModel.FirstName;
+            viewModel.LastName = identitiesModel.LastName;
+            viewModel.Email = identitiesModel.Email;
+            viewModel.FirstAddress = identitiesModel.FirstAddress;
+            viewModel.SecondAddress = identitiesModel.SecondAddress;
+            viewModel.ZIPCode = identitiesModel.ZIPCode;
+            viewModel.City = identitiesModel.City;
+            viewModel.Country = identitiesModel.Country;
+            viewModel.Additional = identitiesModel.Additional;
+            viewModel.Number = identitiesModel.Number;
+            viewModel.Nickname = identitiesModel.Nickname;
+            IdentitiesViewModel.SelectedID = (int)parameter;
 
         }
 
