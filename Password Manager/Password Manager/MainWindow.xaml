@@ -14,7 +14,6 @@
         Height="800" 
         Width="1200"
         ResizeMode="NoResize"
-        Topmost="True"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown">
 

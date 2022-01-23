@@ -26,7 +26,7 @@ namespace Password_Manager.Views
         {
             InitializeComponent();
             PasswordViewModel passwordViewModel = new PasswordViewModel();
-            StackControl.DataContext = passwordViewModel.PasswordCollection;
+            StackPanel.ItemsSource = passwordViewModel.PasswordCollection;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

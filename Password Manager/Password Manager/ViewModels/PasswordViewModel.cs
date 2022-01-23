@@ -88,10 +88,12 @@ namespace Password_Manager.ViewModels
         public ICommand AddCommand { get; }
         public ICommand DeleteCommand { get; }
 
+        public ICommand GetSpecificPassword { get; }
 
         public PasswordViewModel()
         {
             AddCommand = new AddPasswordCommand(this);
+            GetSpecificPassword = new GetSpecificPassword(this);
             passwordCollection = passwordModels(DatabaseManager.Get("Passwords"));
         }
 
