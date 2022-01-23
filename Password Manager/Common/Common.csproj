@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionManager.cs" />
+    <Compile Include="DatabaseManager.cs" />
     <Compile Include="EncryptionManager.cs" />
     <Compile Include="Password.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

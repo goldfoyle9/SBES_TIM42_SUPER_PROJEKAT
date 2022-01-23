@@ -1,4 +1,5 @@
 ﻿using Password_Manager.Models;
+using Password_Manager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace Password_Manager.Views
         public PasswordView()
         {
             InitializeComponent();
+            PasswordViewModel passwordViewModel = new PasswordViewModel();
+            StackControl.DataContext = passwordViewModel.PasswordCollection;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

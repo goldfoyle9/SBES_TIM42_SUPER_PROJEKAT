@@ -13,5 +13,7 @@ namespace Common
         public string Website { get; private set; }
         public string Username { get; private set; }
         public string Additional { get; private set; }
+
+
     }
 }

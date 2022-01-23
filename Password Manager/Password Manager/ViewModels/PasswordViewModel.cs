@@ -1,20 +1,27 @@
-﻿using Password_Manager.Models;
+﻿using Common;
+using Password_Manager.Commands.PasswordCommands;
+using Password_Manager.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Password_Manager.ViewModels
 {
     public class PasswordViewModel : BaseViewModel
     {
-        private IList<PasswordModel> _PasswordList;
+        private ObservableCollection<PasswordModel> passwordCollection;
         private string _value;
         private string nickname;
         private string website;
         private string username;
         private string additional;
+
+        #region props
         public string Value 
         {
             get
@@ -76,11 +83,34 @@ namespace Password_Manager.ViewModels
                 OnPropertyChanged("Additional");
             }
         }
+        #endregion
 
-        public IList<PasswordModel> Passwords
+        public ICommand AddCommand { get; }
+        public ICommand DeleteCommand { get; }
+
+
+        public PasswordViewModel()
         {
-            get { return _PasswordList; }
-            set { _PasswordList = value; }
+            AddCommand = new AddPasswordCommand(this);
+            passwordCollection = passwordModels(DatabaseManager.Get("Passwords"));
+        }
+
+        public ObservableCollection<PasswordModel> PasswordCollection
+        {
+            get { return passwordCollection; }
+            set { passwordCollection = value; }
+        }
+
+        public ObservableCollection<PasswordModel> passwordModels(Dictionary<int, string> getValues)
+        {
+            ObservableCollection<PasswordModel> retList = new ObservableCollection<PasswordModel>();
+            
+            foreach(int id in getValues.Keys)
+            {
+                retList.Add(PasswordModel.Deserialize(getValues[id], id));
+            }
+
+            return retList; 
         }
     }
 }

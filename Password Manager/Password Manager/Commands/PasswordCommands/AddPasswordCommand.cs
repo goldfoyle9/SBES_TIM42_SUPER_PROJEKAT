@@ -1,4 +1,6 @@
-﻿using Password_Manager.Models;
+﻿using Common;
+using Password_Manager.Models;
+using Password_Manager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +10,19 @@ using System.Windows.Input;
 
 namespace Password_Manager.Commands.PasswordCommands
 {
-    public class AddPasswordCommand : ICommand
+    public class AddPasswordCommand : CommandBase
     {
-        public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
+        private PasswordViewModel viewModel;
+        private static int i = 0;
+        public AddPasswordCommand(PasswordViewModel pvm)
         {
-            return true;
+            viewModel = pvm;  
+        }
+        public override void Execute(object parameter)
+        {
+            PasswordModel  model = new PasswordModel(viewModel.Value, viewModel.Nickname, viewModel.Website, viewModel.Username, viewModel.Additional);
+            DatabaseManager.Add(model.ToString(), i++, "Passwords", false);
         }
 
-        public void Execute(object parameter)
-        {
-            PasswordModel model = (PasswordModel)parameter;
-        }
     }
 }

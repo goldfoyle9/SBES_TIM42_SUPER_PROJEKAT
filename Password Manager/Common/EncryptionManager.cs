@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Common
 {
-    public class EncryptionManager
+    public static class EncryptionManager
     {
         private const string Key = "asdfasdfasdfasdfasdfasdfasdfasdf";
         private const string PhoneNumber = "+387653648880000";

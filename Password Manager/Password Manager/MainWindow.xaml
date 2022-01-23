@@ -16,7 +16,7 @@
         ResizeMode="NoResize"
         Topmost="True"
         WindowStyle="None"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown">
 
     <Window.Resources>
 
