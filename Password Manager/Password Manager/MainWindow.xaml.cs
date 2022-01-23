@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Password_Manager
 {
@@ -24,12 +25,32 @@ namespace Password_Manager
     public partial class MainWindow : Window
     {
         ConnectionManager connection;
+        DispatcherTimer timer;
+
         public MainWindow()
         {
-
             connection = new ConnectionManager();
             InitializeComponent();
             DataContext = new StartViewModel();
+            if (timer == null)
+            {
+                timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(30);
+                timer.Tick += timer_Tick;
+                timer.Start();
+            }
+
+
+            
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            var idleTime = IdleTimeDetector.GetIdleTimeInfo();
+            if(idleTime.IdleTime.TotalSeconds > 5)
+            {
+                MessageBox.Show("STOP! YOU'VE VIOLATED THE LAW! PAY THE COURT A FINE OR SERVE YOUR SENTENCE! YOUR STOLEN GOODS ARE NOW FORFEIT, VANDAL!", "STOP", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void addPassword_Click(object sender, RoutedEventArgs e)
