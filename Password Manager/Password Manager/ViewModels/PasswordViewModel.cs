@@ -15,7 +15,6 @@ namespace Password_Manager.ViewModels
     public class PasswordViewModel : BaseViewModel
     {
         private ObservableCollection<PasswordModel> passwordCollection;
-        public event Action actionanyt;
         private string password;
         private string nickname;
         private string website;
@@ -115,12 +114,6 @@ namespace Password_Manager.ViewModels
             }
 
             return retList; 
-        }
-
-        public void DoThing()
-        {
-            if(actionanyt != null)
-                actionanyt();
         }
 
         public void UpdateList()

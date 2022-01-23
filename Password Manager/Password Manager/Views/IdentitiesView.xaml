@@ -5,8 +5,50 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Password_Manager.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Button Content="Peepoo" HorizontalAlignment="Left" Margin="398,186,0,0" VerticalAlignment="Top" Width="198" Height="111"/>
+             d:DesignHeight="740" d:DesignWidth="990">
+
+    <Grid Width="990" Height="740">
+        <ItemsControl Background="White" x:Name="StackPanel" Margin="10,33,752,10">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Margin="0,0,5,5"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Command="{Binding DataContext.GetSpecificIdentity, RelativeSource={RelativeSource AncestorType=Grid}}" CommandParameter="{Binding Id}" Content="{Binding Nickname}" Margin="0,0,5,5" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <TextBox Name="tb_nickname" HorizontalAlignment="Left" Height="24" Margin="377,90,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Nickname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+        <TextBox HorizontalAlignment="Left" Height="24" Margin="10,4,0,0" TextWrapping="Wrap" Text="Search identities" VerticalAlignment="Top" Width="362"/>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="858,273,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click" Command="{Binding AddCommand}" CommandParameter="Identity"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="243,33,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click_1"/>
+        <Label Content="Nickname" HorizontalAlignment="Left" Margin="243,90,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
+        <TextBox x:Name="tb_title" HorizontalAlignment="Left" Height="24" Margin="720,90,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+        <Label Content="Title" HorizontalAlignment="Left" Margin="618,90,0,0" VerticalAlignment="Top" Background="White" Width="86" Height="24"/>
+        <TextBox x:Name="tb_gender" HorizontalAlignment="Left" Height="24" Margin="377,119,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+        <Label Content="Gender" HorizontalAlignment="Left" Margin="243,119,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
+        <TextBox x:Name="tb_email" HorizontalAlignment="Left" Height="24" Margin="720,119,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="618,119,0,0" VerticalAlignment="Top" Background="White" Width="86" Height="24"/>
+        <TextBox x:Name="tb_first_name" HorizontalAlignment="Left" Height="24" Margin="377,148,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+        <Label Content="First Name" HorizontalAlignment="Left" Margin="243,148,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
+        <TextBox x:Name="tb_last_name" HorizontalAlignment="Left" Height="24" Margin="720,148,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+        <Label Content="Last Name" HorizontalAlignment="Left" Margin="618,148,0,0" VerticalAlignment="Top" Background="White" Width="86" Height="24"/>
+        <TextBox x:Name="tb_phone_number" HorizontalAlignment="Left" Height="24" Margin="377,177,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+        <Label Content="Phone Number" HorizontalAlignment="Left" Margin="243,177,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
+        <TextBox x:Name="tb_first_address" HorizontalAlignment="Left" Height="24" Margin="720,177,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding FirstAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+        <Label Content="First Address" HorizontalAlignment="Left" Margin="618,177,0,0" VerticalAlignment="Top" Background="White" Width="86" Height="24"/>
+        <TextBox x:Name="tb_second_address" HorizontalAlignment="Left" Height="24" Margin="377,206,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding SecondAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+        <Label Content="Second Address" HorizontalAlignment="Left" Margin="243,206,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
+        <TextBox x:Name="tb_zip" HorizontalAlignment="Left" Height="24" Margin="720,206,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding ZIPCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+        <Label Content="ZIP Code" HorizontalAlignment="Left" Margin="618,206,0,0" VerticalAlignment="Top" Background="White" Width="86" Height="24"/>
+        <TextBox x:Name="tb_city" HorizontalAlignment="Left" Height="24" Margin="377,235,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+        <Label Content="City" HorizontalAlignment="Left" Margin="243,235,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
+        <TextBox x:Name="tb_country" HorizontalAlignment="Left" Height="24" Margin="720,235,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+        <Label Content="Country" HorizontalAlignment="Left" Margin="619,235,0,0" VerticalAlignment="Top" Background="White" Width="85" Height="24"/>
+        <TextBox x:Name="tb_additional" HorizontalAlignment="Left" Height="24" Margin="377,264,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Additional, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+        <Label Content="Additional" HorizontalAlignment="Left" Margin="243,264,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
     </Grid>
 </UserControl>

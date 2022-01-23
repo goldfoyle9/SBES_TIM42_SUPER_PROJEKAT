@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Password_Manager.Views
 {
@@ -23,13 +24,25 @@ namespace Password_Manager.Views
     public partial class PasswordView : UserControl
     {
         PasswordViewModel passwordViewModel;
+        DispatcherTimer timer;
         public PasswordView()
         {
             InitializeComponent();
             passwordViewModel = new PasswordViewModel();
             StackPanel.ItemsSource = passwordViewModel.PasswordCollection;
+            if (timer == null)
+            {
+                timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Tick += timer_Tick;
+                timer.Start();
+            }
         }
-
+        void timer_Tick(object sender, EventArgs e)
+        {
+            passwordViewModel.UpdateList();
+            StackPanel.ItemsSource = passwordViewModel.PasswordCollection;
+        }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
