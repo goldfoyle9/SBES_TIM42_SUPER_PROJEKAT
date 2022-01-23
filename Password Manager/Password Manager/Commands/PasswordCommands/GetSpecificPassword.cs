@@ -19,7 +19,7 @@ namespace Password_Manager.Commands.PasswordCommands
         }
         public override void Execute(object parameter)
         {
-            viewModel.Value = viewModel.PasswordCollection[(int)parameter].Value;
+            viewModel.Password = viewModel.PasswordCollection[(int)parameter].Value;
             viewModel.Additional = viewModel.PasswordCollection[(int)parameter].Additional;
             viewModel.Nickname = viewModel.PasswordCollection[(int)parameter].Nickname;
             viewModel.Username = viewModel.PasswordCollection[(int)parameter].Username;

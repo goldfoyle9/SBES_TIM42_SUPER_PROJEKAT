@@ -15,22 +15,31 @@ namespace Password_Manager.ViewModels
     public class PasswordViewModel : BaseViewModel
     {
         private ObservableCollection<PasswordModel> passwordCollection;
-        private string _value;
+        public event Action actionanyt;
+        private string password;
         private string nickname;
         private string website;
         private string username;
         private string additional;
 
         #region props
-        public string Value 
+        public ObservableCollection<PasswordModel> PasswordCollection
+        {
+            get { return passwordCollection; }
+            set
+            { 
+                passwordCollection = value;
+            }
+        }
+        public string Password 
         {
             get
             {
-                return _value;
+                return password;
             }
             set
             {
-                _value = value;
+                password = value;
                 OnPropertyChanged("Password");
             }
         }
@@ -87,20 +96,13 @@ namespace Password_Manager.ViewModels
 
         public ICommand AddCommand { get; }
         public ICommand DeleteCommand { get; }
-
         public ICommand GetSpecificPassword { get; }
 
         public PasswordViewModel()
         {
             AddCommand = new AddPasswordCommand(this);
             GetSpecificPassword = new GetSpecificPassword(this);
-            passwordCollection = passwordModels(DatabaseManager.Get("Passwords"));
-        }
-
-        public ObservableCollection<PasswordModel> PasswordCollection
-        {
-            get { return passwordCollection; }
-            set { passwordCollection = value; }
+            UpdateList();
         }
 
         public ObservableCollection<PasswordModel> passwordModels(Dictionary<int, string> getValues)
@@ -113,6 +115,17 @@ namespace Password_Manager.ViewModels
             }
 
             return retList; 
+        }
+
+        public void DoThing()
+        {
+            if(actionanyt != null)
+                actionanyt();
+        }
+
+        public void UpdateList()
+        {
+            passwordCollection = passwordModels(DatabaseManager.Get("Passwords"));
         }
     }
 }

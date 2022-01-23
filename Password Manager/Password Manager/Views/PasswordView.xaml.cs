@@ -22,10 +22,11 @@ namespace Password_Manager.Views
     /// </summary>
     public partial class PasswordView : UserControl
     {
+        PasswordViewModel passwordViewModel;
         public PasswordView()
         {
             InitializeComponent();
-            PasswordViewModel passwordViewModel = new PasswordViewModel();
+            passwordViewModel = new PasswordViewModel();
             StackPanel.ItemsSource = passwordViewModel.PasswordCollection;
         }
 
@@ -36,9 +37,22 @@ namespace Password_Manager.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PasswordModel model = new PasswordModel(pb_password.Text, tb_nickname.Text, tb_website.Text, tb_username.Text, tb_addinfo.Text);
-            
+            tb_username.IsReadOnly = true;
+            tb_website.IsReadOnly = true;
+            pb_password.IsReadOnly = true;
+            tb_addinfo.IsReadOnly = true;
+            tb_nickname.IsReadOnly = true;
+            passwordViewModel.UpdateList();
+            StackPanel.ItemsSource = passwordViewModel.PasswordCollection;
+        }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            tb_username.IsReadOnly = false;
+            tb_website.IsReadOnly = false;
+            pb_password.IsReadOnly = false;
+            tb_addinfo.IsReadOnly = false;
+            tb_nickname.IsReadOnly = false;
         }
     }
 }

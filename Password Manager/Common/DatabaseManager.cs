@@ -11,7 +11,7 @@ namespace Common
     {
    
 
-        public static void Add(string data, int id, string tableName, bool update)
+        public static bool Add(string data, int id, string tableName, bool update)
         {
             string query = "";
             if (!update)
@@ -31,6 +31,7 @@ namespace Common
                 command.ExecuteNonQuery();
 
             }
+            return true;
         }
 
         public static Tuple<int, string> GetOne(int id, string tableName)

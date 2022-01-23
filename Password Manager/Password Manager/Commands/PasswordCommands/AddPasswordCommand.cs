@@ -20,7 +20,7 @@ namespace Password_Manager.Commands.PasswordCommands
         }
         public override void Execute(object parameter)
         {
-            PasswordModel  model = new PasswordModel(viewModel.Value, viewModel.Nickname, viewModel.Website, viewModel.Username, viewModel.Additional);
+            PasswordModel  model = new PasswordModel(viewModel.Password, viewModel.Nickname, viewModel.Website, viewModel.Username, viewModel.Additional);
             DatabaseManager.Add(model.ToString(), i++, "Passwords", false);
         }
 
