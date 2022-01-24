@@ -29,7 +29,12 @@ namespace Password_Manager.Commands.CardCommands
             model.IssuanceDate = viewModel.IssuanceDate;
             model.ExpirationDate = viewModel.ExpirationDate;
             model.Name = viewModel.Name;
-            DatabaseManager.Add(model.ToString(), i++, "Cards", false);
+
+            if (CardsViewModel.SelectedID == -1)
+                DatabaseManager.Add(model.ToString(), viewModel.FindFirstId(), "Cards", false);
+            else
+                DatabaseManager.Add(model.ToString(), CardsViewModel.SelectedID, "Cards", true);
+            CardsViewModel.SelectedID = -1;
         }
 
     }

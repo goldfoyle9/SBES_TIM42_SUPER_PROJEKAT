@@ -41,6 +41,7 @@ namespace Password_Manager.Views
         {
             viewModel.UpdateList();
             StackPanel.ItemsSource = viewModel.IdentityCollection;
+            deletebtn.CommandParameter = IdentitiesViewModel.SelectedID;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -78,6 +79,37 @@ namespace Password_Manager.Views
             tb_city.IsReadOnly = false;
             tb_country.IsReadOnly = false;
             tb_additional.IsReadOnly = false;
+        }
+
+        private void addbtn_Click(object sender, RoutedEventArgs e)
+        {
+            tb_nickname.IsReadOnly = false;
+            tb_title.IsReadOnly = false;
+            tb_gender.IsReadOnly = false;
+            tb_email.IsReadOnly = false;
+            tb_first_name.IsReadOnly = false;
+            tb_last_name.IsReadOnly = false;
+            tb_phone_number.IsReadOnly = false;
+            tb_first_address.IsReadOnly = false;
+            tb_second_address.IsReadOnly = false;
+            tb_zip.IsReadOnly = false;
+            tb_city.IsReadOnly = false;
+            tb_country.IsReadOnly = false;
+            tb_additional.IsReadOnly = false; 
+            tb_nickname.Text = "";
+            tb_title.Text = "";
+            tb_gender.Text = "";
+            tb_email.Text = "";
+            tb_first_name.Text = "";
+            tb_last_name.Text = "";
+            tb_phone_number.Text = "";
+            tb_first_address.Text = "";
+            tb_second_address.Text = "";
+            tb_zip.Text = "";
+            tb_city.Text = "";
+            tb_country.Text = "";
+            tb_additional.Text = "";
+            IdentitiesViewModel.SelectedID = -1;
         }
     }
 }

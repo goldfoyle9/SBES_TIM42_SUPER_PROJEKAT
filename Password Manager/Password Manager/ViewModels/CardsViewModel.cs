@@ -3,6 +3,7 @@ using Password_Manager.Commands.CardCommands;
 using Password_Manager.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Password_Manager.ViewModels
@@ -10,6 +11,7 @@ namespace Password_Manager.ViewModels
     public class CardsViewModel : BaseViewModel 
     {
         #region fields
+        private static List<CardsModel> cardCollection;
         private string nickname;
         private string name;
         private string number;
@@ -18,9 +20,16 @@ namespace Password_Manager.ViewModels
         private string issuanceDate;
         private string expirationDate;
         private string additional;
+        private static int selectedID;
         #endregion
         #region props
-        public ObservableCollection<CardsModel> CardCollection { get; set; }
+
+        public static int SelectedID
+        {
+            get { return selectedID; }
+            set { selectedID = value; }
+        }
+        public List<CardsModel> CardCollection { get { return cardCollection; } set { cardCollection = value; } }
         public string Nickname { get { return nickname; } set { nickname = value; OnPropertyChanged("Nickname"); } }
         public string Name { get { return name; } set { name = value; OnPropertyChanged("Name"); } }
         public string Number { get { return number; } set { number= value; OnPropertyChanged("Number"); } }
@@ -40,12 +49,13 @@ namespace Password_Manager.ViewModels
         {
             AddCommand = new AddCardCommand(this);
             GetSpecificCard = new GetSpecificCard(this);
+            DeleteCommand = new DeleteCardCommand();
             UpdateList();
         }
 
-        public ObservableCollection<CardsModel> cardModels(Dictionary<int, string> getValues)
+        public List<CardsModel> cardModels(Dictionary<int, string> getValues)
         {
-            ObservableCollection<CardsModel> retList = new ObservableCollection<CardsModel>();
+            List<CardsModel> retList = new List<CardsModel>();
 
             foreach (int id in getValues.Keys)
             {
@@ -56,8 +66,19 @@ namespace Password_Manager.ViewModels
         }
         public void UpdateList()
         {
-            CardCollection = cardModels(DatabaseManager.Get("Cards"));
+            CardCollection = cardModels(DatabaseManager.Get("Cards")).OrderBy(x => x.Id).ToList();
         }
-
+        public int FindFirstId()
+        {
+            int result = 0;
+            for (; result < cardCollection.Count; result++)
+            {
+                if (!cardCollection.Any(t => t.Id == result))
+                {
+                    break;
+                }
+            }
+            return result;
+        }
     }
 }

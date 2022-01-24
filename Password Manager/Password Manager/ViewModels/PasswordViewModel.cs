@@ -14,15 +14,21 @@ namespace Password_Manager.ViewModels
 {
     public class PasswordViewModel : BaseViewModel
     {
-        private ObservableCollection<PasswordModel> passwordCollection;
+        private static List<PasswordModel> passwordCollection;
         private string password;
         private string nickname;
         private string website;
         private string username;
         private string additional;
+        private static int selectedID;
 
         #region props
-        public ObservableCollection<PasswordModel> PasswordCollection
+        public static int SelectedID
+        {
+            get { return selectedID; }  
+            set { selectedID = value; } 
+        }
+        public List<PasswordModel> PasswordCollection
         {
             get { return passwordCollection; }
             set
@@ -101,12 +107,13 @@ namespace Password_Manager.ViewModels
         {
             AddCommand = new AddPasswordCommand(this);
             GetSpecificPassword = new GetSpecificPassword(this);
+            DeleteCommand = new DeletePasswordCommand();
             UpdateList();
         }
 
-        public ObservableCollection<PasswordModel> passwordModels(Dictionary<int, string> getValues)
+        public List<PasswordModel> passwordModels(Dictionary<int, string> getValues)
         {
-            ObservableCollection<PasswordModel> retList = new ObservableCollection<PasswordModel>();
+            List<PasswordModel> retList = new List<PasswordModel>();
             
             foreach(int id in getValues.Keys)
             {
@@ -118,7 +125,19 @@ namespace Password_Manager.ViewModels
 
         public void UpdateList()
         {
-            passwordCollection = passwordModels(DatabaseManager.Get("Passwords"));
+            passwordCollection = passwordModels(DatabaseManager.Get("Passwords")).OrderBy(t=>t.Id).ToList();
+        }
+        public int FindFirstId()
+        {
+            int result = 0;
+            for(; result < passwordCollection.Count; result++)
+            {
+                if(!passwordCollection.Any( t => t.Id == result))
+                {
+                    break;
+                }
+            }
+            return result;
         }
     }
 }

@@ -13,15 +13,18 @@ namespace Password_Manager.Commands.PasswordCommands
     public class AddPasswordCommand : CommandBase
     {
         private PasswordViewModel viewModel;
-        private static int i = 0;
         public AddPasswordCommand(PasswordViewModel pvm)
         {
             viewModel = pvm;  
         }
         public override void Execute(object parameter)
         {
-            PasswordModel  model = new PasswordModel(viewModel.Password, viewModel.Nickname, viewModel.Website, viewModel.Username, viewModel.Additional);
-            DatabaseManager.Add(model.ToString(), i++, "Passwords", false);
+            PasswordModel model = new PasswordModel(viewModel.Password, viewModel.Nickname, viewModel.Website, viewModel.Username, viewModel.Additional);
+            if (PasswordViewModel.SelectedID == -1)
+                DatabaseManager.Add(model.ToString(), viewModel.FindFirstId(), "Passwords", false);
+            else
+                DatabaseManager.Add(model.ToString(), PasswordViewModel.SelectedID, "Passwords", true);
+            PasswordViewModel.SelectedID = -1;
         }
 
     }

@@ -41,6 +41,7 @@ namespace Password_Manager.Views
         {
             viewModel.UpdateList();
             StackPanel.ItemsSource = viewModel.CardCollection;
+            deletebtn.CommandParameter = CardsViewModel.SelectedID;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -68,6 +69,26 @@ namespace Password_Manager.Views
             tb_issuance_date.IsReadOnly = false;
             tb_expiration_date.IsReadOnly = false;
             tb_additional.IsReadOnly = false;
+        }
+        private void addbtn_Click(object sender, RoutedEventArgs e)
+        {
+            tb_nickname.IsReadOnly = false;
+            tb_name.IsReadOnly = false;
+            tb_number.IsReadOnly = false;
+            tb_type.IsReadOnly = false;
+            tb_country.IsReadOnly = false;
+            tb_issuance_date.IsReadOnly = false;
+            tb_expiration_date.IsReadOnly = false;
+            tb_additional.IsReadOnly = false;
+            tb_nickname.Text = "";
+            tb_name.Text = "";
+            tb_number.Text = "";
+            tb_type.Text = "";
+            tb_country.Text = "";
+            tb_issuance_date.Text = "";
+            tb_expiration_date.Text = "";
+            tb_additional.Text = "";
+            CardsViewModel.SelectedID = -1;
         }
     }
 }
