@@ -22,7 +22,6 @@
         </ItemsControl>
 
         <TextBox Name="tb_nickname" HorizontalAlignment="Left" Height="24" Margin="377,90,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Nickname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Height="24" Margin="10,4,0,0" TextWrapping="Wrap" Text="Search identities" VerticalAlignment="Top" Width="362"/>
         <Button Content="Save" HorizontalAlignment="Left" Margin="858,273,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click" Command="{Binding AddCommand}" CommandParameter="Identity"/>
         <Button Content="Edit" HorizontalAlignment="Left" Margin="243,33,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click_1"/>
         <Label Content="Nickname" HorizontalAlignment="Left" Margin="243,90,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>

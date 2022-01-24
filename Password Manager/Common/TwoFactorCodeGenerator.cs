@@ -34,7 +34,7 @@ namespace Common
         public static void SendTotpCode(string phoneNumber)
         {
             string accountSid = "AC27454ff55aaa94b60de233df7c1b6d50";
-            string authToken = "2739443da5ea0f446cd6a5f61d6ce5b9";
+            string authToken = "f9a5cc14110d6a6450ae590e618da5f1";
             TwilioClient.Init(accountSid, authToken);
             var totp = GenerateCode();
 
