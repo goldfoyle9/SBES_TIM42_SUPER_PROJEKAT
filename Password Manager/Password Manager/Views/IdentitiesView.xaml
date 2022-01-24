@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Password_Manager.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="740" d:DesignWidth="990">
+             d:DesignWidth="800" Height="419">
 
     <Grid Width="990" Height="740">
         <ItemsControl Background="White" x:Name="StackPanel" Margin="10,33,752,10">

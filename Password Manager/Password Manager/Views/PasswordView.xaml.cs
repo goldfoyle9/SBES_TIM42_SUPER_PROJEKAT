@@ -81,5 +81,10 @@ namespace Password_Manager.Views
             tb_nickname.Text = "";
             PasswordViewModel.SelectedID = -1;
         }
+
+        private void StackPanel_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+
+        }
     }
 }

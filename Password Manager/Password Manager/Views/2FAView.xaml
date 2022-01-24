@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Password_Manager.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignWidth="800" Height="419">
     <Grid>
         <Button Content="Peepee" HorizontalAlignment="Left" Margin="398,186,0,0" VerticalAlignment="Top" Width="198" Height="111"/>
 
