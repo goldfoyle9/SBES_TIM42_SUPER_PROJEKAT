@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Password_Manager.Commands
@@ -46,20 +47,12 @@ namespace Password_Manager.Commands
                     //Common.Formatter.FormatDrive_CommandLine('G');
                     try
                     {
-                        using (var streamWriter = new StreamWriter("G:\\key"))
-                        {
-                            var random = new Random();
-                            string key = random.Next().ToString() + random.Next().ToString() + random.Next().ToString() + random.Next().ToString();
-                            streamWriter.WriteLine(key);
-
-                            File.SetAttributes("G:\\key", FileAttributes.ReadOnly | FileAttributes.Hidden | FileAttributes.System);
-                        }
+                        Common.Formatter.SetUpUSB(true);
                     }
                     catch (Exception ex)
                     {
 
                     }
-                    viewModel.SelectedViewModel = new SettingsViewModel();
                     break;
                 default:
                     break;

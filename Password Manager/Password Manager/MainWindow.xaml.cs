@@ -47,7 +47,7 @@ namespace Password_Manager
         private void timer_Tick(object sender, EventArgs e)
         {
             var idleTime = IdleTimeDetector.GetIdleTimeInfo();
-            if(idleTime.IdleTime.TotalSeconds > 10)
+            if(idleTime.IdleTime.TotalSeconds > 30)
             {
                 Window timeout = new TimeoutWindow();
                 timeout.Show();

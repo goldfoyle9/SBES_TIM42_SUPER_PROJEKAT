@@ -34,25 +34,6 @@ namespace Common
             return true;
         }
 
-        public static Tuple<int, string> GetOne(int id, string tableName)
-        {
-            string query = $"SELECT * from {tableName} where id = @id";
-            Dictionary<int, string> returnDictionary = new Dictionary<int, string>();
-            using (SqlCommand command = new SqlCommand(query, ConnectionManager.Connection))
-            {
-
-                using (var reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        return new Tuple<int, string>((int)reader[0], EncryptionManager.DecryptStringFromBytes_Aes((byte[])reader[1]));
-
-                    }
-                }
-            }
-            return null;
-        }
-
         public static Dictionary<int, string> Get(string tableName)
         {
             string query = $"SELECT * from {tableName}";
@@ -78,6 +59,16 @@ namespace Common
             using (SqlCommand command = new SqlCommand(query, ConnectionManager.Connection))
             {
                 command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+            }
+            return;
+        }
+
+        public static void DeleteAll()
+        {
+            string query = "DELETE FROM Cards;DELETE FROM Identities;DELETE FROM _2FA;DELETE FROM Passwords";
+            using (SqlCommand command = new SqlCommand(query, ConnectionManager.Connection))
+            {
                 command.ExecuteNonQuery();
             }
             return;

@@ -26,6 +26,17 @@ namespace Password_Manager
         public PinWindow()
         {
             InitializeComponent();
+            try
+            {
+                if (new StreamReader($"{Environment.GetEnvironmentVariable("keydrive", EnvironmentVariableTarget.User)}:\\pin") != null)
+                {
+                    Window window = new TimeoutWindow();
+                    window.Show();
+                    Thread.Sleep(15);
+                    this.Close();
+                }
+            }
+            catch { }
         }
 
         private bool CollectInput()
@@ -37,9 +48,9 @@ namespace Password_Manager
 
                 if (pin1 == pin2)
                 {
-                    using (StreamWriter sw = new StreamWriter("G:\\pin"))
+                    using (StreamWriter sw = new StreamWriter($"{Environment.GetEnvironmentVariable("keydrive", EnvironmentVariableTarget.User)}:\\pin"))
                         sw.WriteLine(pin1);
-                    File.SetAttributes("G:\\pin", FileAttributes.ReadOnly | FileAttributes.Hidden | FileAttributes.System);
+                    File.SetAttributes($"{Environment.GetEnvironmentVariable("keydrive", EnvironmentVariableTarget.User)}:\\pin", FileAttributes.ReadOnly | FileAttributes.Hidden | FileAttributes.System);
                     return true;
                 }
                 return false;

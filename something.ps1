@@ -1,0 +1,2 @@
+[Environment]::SetEnvironmentVariable("twilioAccountSid", "AC27454ff55aaa94b60de233df7c1b6d50", "User")
+[Environment]::SetEnvironmentVariable("twilioAuthToken", "f9a5cc14110d6a6450ae590e618da5f1", "User")

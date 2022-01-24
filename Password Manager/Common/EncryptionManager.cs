@@ -10,7 +10,7 @@ namespace Common
 {
     public static class EncryptionManager
     {
-        private const string PhoneNumber = "+387653648880000";
+        private static string PhoneNumber = Environment.GetEnvironmentVariable("numb", EnvironmentVariableTarget.User);
 
         public static byte[] EncryptStringToBytes_Aes(string plainText)
         {
@@ -24,7 +24,7 @@ namespace Common
                 // with the specified key and IV.
                 using (Aes aesAlg = Aes.Create())
                 {
-                    using (StreamReader sr = new StreamReader("G:\\key"))
+                    using (StreamReader sr = new StreamReader($"{Environment.GetEnvironmentVariable("keydrive", EnvironmentVariableTarget.User)}:\\key"))
                         aesAlg.Key = Encoding.ASCII.GetBytes(sr.ReadToEnd().ToCharArray(), 0, 32);
                     aesAlg.IV = Encoding.ASCII.GetBytes(PhoneNumber);
 
@@ -71,7 +71,7 @@ namespace Common
                 // with the specified key and IV.
                 using (Aes aesAlg = Aes.Create())
                 {
-                    using (StreamReader sr = new StreamReader("G:\\key"))
+                    using (StreamReader sr = new StreamReader($"{Environment.GetEnvironmentVariable("keydrive", EnvironmentVariableTarget.User)}:\\key"))
                         aesAlg.Key = Encoding.ASCII.GetBytes(sr.ReadToEnd().ToCharArray(), 0, 32);
                     aesAlg.IV = Encoding.ASCII.GetBytes(PhoneNumber);
 

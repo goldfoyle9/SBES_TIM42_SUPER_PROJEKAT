@@ -1,4 +1,5 @@
 ﻿using Common;
+using Password_Manager.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,8 @@ namespace Password_Manager
         private void timer_Tick(object sender, EventArgs e)
         {
             Window window = new PinWindow();
-            window.Show();
+            try { window.Show(); }
+            catch { }
             timer.Stop();
             this.Close();
         }
@@ -44,6 +46,20 @@ namespace Password_Manager
             else
             {
                 spin_me_round.Visibility = Visibility.Visible;
+                Environment.SetEnvironmentVariable("numb", TwoFactorCodeGenerator.phoneNumber, EnvironmentVariableTarget.User);
+                bool hasAccepted = false;
+                int numOfTries = 0;
+                while(hasAccepted == false && numOfTries < 3)
+                {
+                    numOfTries++;
+                    hasAccepted = Common.Formatter.SetUpUSB();
+                }
+                if (numOfTries == 3)
+                {
+                    MessageBox.Show("App closing due to not providing valid removable drive.");
+                    Thread.Sleep(3000);
+                    this.Close();
+                }
                 if (timer == null)
                 {
                     timer = new DispatcherTimer();

@@ -26,7 +26,20 @@ namespace Password_Manager
         public StartWindow()
         {
             InitializeComponent();
-            
+
+            if (Environment.GetEnvironmentVariable("numb", EnvironmentVariableTarget.User) != null)
+            {
+                Window window = new PinWindow();
+                try
+                {
+                    window.Show();
+                }
+                catch (Exception)
+                {
+
+                }
+                this.Close();
+            }
         }
 
 
