@@ -22,7 +22,9 @@
             <fa:ImageAwesome x:Name="spin_me_round" Visibility="Hidden" Icon="Refresh" Spin="True"  Height="250" Width="250" Foreground="White" Canvas.Top="28" Canvas.Left="26" />
         </Canvas>
         <Label Content="Welcome to MySBES" HorizontalAlignment="Left" Margin="376,36,0,0" VerticalAlignment="Top" Height="102" Width="466" Foreground="#FF8B8B8B" FontSize="48"/>
-        <Label Content="Please enter the code that was sent to your phone number" HorizontalAlignment="Left" Margin="153,136,0,0" VerticalAlignment="Top" Height="102" Width="962" Foreground="#FF8B8B8B" FontSize="35" RenderTransformOrigin="0.5,0.5"/>
+        <Label Content="Please enter the code that was sent to your phone number" HorizontalAlignment="Left" Margin="153,136,0,0" VerticalAlignment="Top" Height="102" Width="962" Foreground="#FF8B8B8B" FontSize="35" RenderTransformOrigin="0.5,0.5">
+         
+        </Label>
         <TextBox x:Name="code" HorizontalAlignment="Left" TextAlignment="Center" Height="59" Margin="332,608,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="536" Background="{x:Null}" Foreground="#FF8B8B8B" FontSize="35"/>
         <Button Content="Confirm" HorizontalAlignment="Left" Margin="534,702,0,0" VerticalAlignment="Top" Width="135" Height="59" Foreground="#FF8B8B8B" Background="{x:Null}" FontSize="25" Click="Button_Click"/>
     </Grid>

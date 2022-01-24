@@ -35,7 +35,7 @@ namespace Password_Manager
             if (timer == null)
             {
                 timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(30);
+                timer.Interval = TimeSpan.FromSeconds(1);
                 timer.Tick += timer_Tick;
                 timer.Start();
             }
@@ -47,9 +47,12 @@ namespace Password_Manager
         private void timer_Tick(object sender, EventArgs e)
         {
             var idleTime = IdleTimeDetector.GetIdleTimeInfo();
-            if(idleTime.IdleTime.TotalSeconds > 5)
+            if(idleTime.IdleTime.TotalSeconds > 10)
             {
-                MessageBox.Show("STOP! YOU'VE VIOLATED THE LAW! PAY THE COURT A FINE OR SERVE YOUR SENTENCE! YOUR STOLEN GOODS ARE NOW FORFEIT, VANDAL!", "STOP", MessageBoxButton.OK, MessageBoxImage.Error);
+                Window timeout = new TimeoutWindow();
+                timeout.Show();
+                this.Close();
+                timer.Stop();
             }
         }
 
