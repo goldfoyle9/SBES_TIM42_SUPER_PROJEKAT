@@ -20,7 +20,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <TextBlock Background="Red" Foreground="AliceBlue" TextAlignment="Center" FontWeight="ExtraBlack" FontSize="48" Text="154674" Margin="582,127,70,531"/>
+        <TextBlock Name="generated" Background="Red" Foreground="AliceBlue" TextAlignment="Center" FontWeight="ExtraBlack" FontSize="48" Text="" Margin="582,127,70,531"/>
         <TextBox Name="tb_nickname" HorizontalAlignment="Left" Height="24" Margin="377,127,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Nickname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
         <Button Content="Save" HorizontalAlignment="Left" Margin="858,273,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click" Command="{Binding AddCommand}" CommandParameter="Identity"/>
         <Button Content="Edit" HorizontalAlignment="Left" Margin="243,33,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click_1"/>

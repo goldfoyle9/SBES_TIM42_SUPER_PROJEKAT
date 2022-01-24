@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,12 +50,26 @@ namespace Password_Manager
         }
         private void pinBox1_Copy4_PasswordChanged(object sender, RoutedEventArgs e)
         {
-           
+            Button_Click(sender, e);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                string pin = pinBox1.Password + pinBox1_Copy.Password + pinBox1_Copy1.Password + pinBox1_Copy2.Password + pinBox1_Copy3.Password + pinBox1_Copy4.Password;
+                using (StreamReader sr = new StreamReader("G:\\pin"))
+                    if (pin == sr.ReadToEnd().Trim())
+                    {
+                        Window window = new MainWindow();
+                        window.Show();
+                        this.Close();
+                    }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Can't Access without USB drive.");
+            }
         }
     }
 }

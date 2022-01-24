@@ -23,6 +23,19 @@ namespace Common
             var TotpCode = totp.ComputeTotp(DateTime.UtcNow);
             return TotpCode;
         }
+        public static string GenerateCode(string thing)
+        {
+            try
+            {
+                totp = new Totp(Base32Encoding.ToBytes(thing));
+                var TotpCode = totp.ComputeTotp(DateTime.UtcNow);
+                return TotpCode;
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+        }
 
         public static bool VerifyTotpCode(string totpString)
         {

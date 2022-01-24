@@ -1,6 +1,7 @@
 ﻿using Common;
 using Password_Manager.Commands.CardCommands;
 using Password_Manager.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -50,23 +51,38 @@ namespace Password_Manager.ViewModels
             AddCommand = new AddCardCommand(this);
             GetSpecificCard = new GetSpecificCard(this);
             DeleteCommand = new DeleteCardCommand();
+            CardCollection = new List<CardsModel>();
             UpdateList();
         }
 
         public List<CardsModel> cardModels(Dictionary<int, string> getValues)
         {
-            List<CardsModel> retList = new List<CardsModel>();
-
-            foreach (int id in getValues.Keys)
+            try
             {
-                retList.Add(CardsModel.Deserialize(getValues[id], id));
-            }
+                List<CardsModel> retList = new List<CardsModel>();
 
-            return retList;
+                foreach (int id in getValues.Keys)
+                {
+                    retList.Add(CardsModel.Deserialize(getValues[id], id));
+                }
+
+                return retList;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
         public void UpdateList()
         {
-            CardCollection = cardModels(DatabaseManager.Get("Cards")).OrderBy(x => x.Id).ToList();
+            try
+            {
+                CardCollection = cardModels(DatabaseManager.Get("Cards")).OrderBy(x => x.Id).ToList();
+            }
+            catch (Exception ex)
+            {
+                CardCollection.Clear();
+            }
         }
         public int FindFirstId()
         {

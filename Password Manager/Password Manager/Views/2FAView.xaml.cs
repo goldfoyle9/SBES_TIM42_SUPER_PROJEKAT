@@ -1,4 +1,5 @@
-﻿using Password_Manager.ViewModels;
+﻿using Common;
+using Password_Manager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,7 @@ namespace Password_Manager.Views
             viewModel.UpdateList();
             StackPanel.ItemsSource = viewModel._2FACollection;
             deletebtn.CommandParameter = _2FAViewModel.SelectedID;
+            generated.Text = TwoFactorCodeGenerator.GenerateCode(pb_secret.Password);
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

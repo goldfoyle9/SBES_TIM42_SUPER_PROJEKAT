@@ -78,6 +78,8 @@ namespace Password_Manager.Models
         #endregion
         public static IdentitiesModel Deserialize(string value, int id)
         {
+            if (value == "")
+                return null;
             IdentitiesModel model = new IdentitiesModel();
             string[] array = value.Split('|');
             model.Nickname = array[0];

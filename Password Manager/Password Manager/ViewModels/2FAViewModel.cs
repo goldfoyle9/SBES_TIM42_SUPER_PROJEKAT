@@ -18,6 +18,7 @@ namespace Password_Manager.ViewModels
         private string secret;
         private string additional;
         private static int selectedID;
+        
         #endregion
         #region props
 
@@ -42,23 +43,39 @@ namespace Password_Manager.ViewModels
             AddCommand = new Add2FACommand(this);
             GetSpecific2FA = new GetSpecific2FA(this);
             DeleteCommand = new Delete2FACommand();
+            _2FACollection = new List<_2FAModel>();
             UpdateList();
         }
 
         public List<_2FAModel> _2FAModels(Dictionary<int, string> getValues)
         {
-            List<_2FAModel> retList = new List<_2FAModel>();
-
-            foreach (int id in getValues.Keys)
+            try
             {
-                retList.Add(_2FAModel.Deserialize(getValues[id], id));
-            }
+                List<_2FAModel> retList = new List<_2FAModel>();
 
-            return retList;
+                foreach (int id in getValues.Keys)
+                {
+                    retList.Add(_2FAModel.Deserialize(getValues[id], id));
+                }
+
+                return retList;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
         public void UpdateList()
         {
-            _2FACollection = _2FAModels(DatabaseManager.Get("_2FA")).OrderBy(x => x.Id).ToList();
+            try
+            {
+
+                _2FACollection = _2FAModels(DatabaseManager.Get("_2FA")).OrderBy(x => x.Id).ToList();
+            }
+            catch(Exception ex)
+            {
+                _2FACollection.Clear();
+            }
         }
         public int FindFirstId()
         {

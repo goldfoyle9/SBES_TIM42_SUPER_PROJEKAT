@@ -61,23 +61,38 @@ namespace Password_Manager.ViewModels
             AddCommand = new AddIdentityCommand(this);
             GetSpecificIdentity = new GetSpecificIdentity(this);
             DeleteCommand = new DeleteIdentityCommand();
+            IdentityCollection = new List<IdentitiesModel>();
             UpdateList();
         }
 
         public List<IdentitiesModel> identityModels(Dictionary<int, string> getValues)
         {
-            List<IdentitiesModel> retList = new List<IdentitiesModel>();
-
-            foreach (int id in getValues.Keys)
+            try
             {
-                retList.Add(IdentitiesModel.Deserialize(getValues[id], id));
-            }
+                List<IdentitiesModel> retList = new List<IdentitiesModel>();
 
-            return retList;
+                foreach (int id in getValues.Keys)
+                {
+                    retList.Add(IdentitiesModel.Deserialize(getValues[id], id));
+                }
+
+                return retList;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
         public void UpdateList()
         {
-            IdentityCollection = identityModels(DatabaseManager.Get("Identities")).OrderBy(t => t.Id).ToList();
+            try
+            {
+                IdentityCollection = identityModels(DatabaseManager.Get("Identities")).OrderBy(t => t.Id).ToList();
+            }
+            catch (Exception ex)
+            {
+                IdentityCollection.Clear();
+            }
         }
         public int FindFirstId()
         {

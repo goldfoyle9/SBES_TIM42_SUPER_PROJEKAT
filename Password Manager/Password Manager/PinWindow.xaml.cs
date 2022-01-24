@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -31,11 +32,23 @@ namespace Password_Manager
         {
             string pin1 = pinBox1.Password + pinBox1_Copy.Password + pinBox1_Copy1.Password + pinBox1_Copy2.Password + pinBox1_Copy3.Password + pinBox1_Copy4.Password;
             string pin2 = pinBox1_Copy5.Password + pinBox1_Copy6.Password + pinBox1_Copy7.Password + pinBox1_Copy8.Password + pinBox1_Copy9.Password + pinBox1_Copy10.Password;
-            if(pin1 == pin2)
+            try
             {
-                return true;
+
+                if (pin1 == pin2)
+                {
+                    using (StreamWriter sw = new StreamWriter("G:\\pin"))
+                        sw.WriteLine(pin1);
+                    File.SetAttributes("G:\\pin", FileAttributes.ReadOnly | FileAttributes.Hidden | FileAttributes.System);
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch (Exception ex)
+            {
+                MessageBox.Show("Input USB Drive.");
+                return false;
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -122,7 +135,7 @@ namespace Password_Manager
 
         private void pinBox1_Copy10_PasswordChanged(object sender, RoutedEventArgs e)
         {
-
+            Button_Click(sender, e);
         }
     }
 }

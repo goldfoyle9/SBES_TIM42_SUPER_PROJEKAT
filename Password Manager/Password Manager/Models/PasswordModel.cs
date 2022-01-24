@@ -47,6 +47,8 @@ namespace Password_Manager.Models
 
         public static PasswordModel Deserialize(string value, int id)
         {
+            if (value == "")
+                return null;
             PasswordModel model = new PasswordModel();
             string[] array = value.Split('|');
             model.Value = array[0];

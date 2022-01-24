@@ -108,24 +108,39 @@ namespace Password_Manager.ViewModels
             AddCommand = new AddPasswordCommand(this);
             GetSpecificPassword = new GetSpecificPassword(this);
             DeleteCommand = new DeletePasswordCommand();
+            PasswordCollection = new List<PasswordModel>();
             UpdateList();
         }
 
         public List<PasswordModel> passwordModels(Dictionary<int, string> getValues)
         {
-            List<PasswordModel> retList = new List<PasswordModel>();
-            
-            foreach(int id in getValues.Keys)
+            try
             {
-                retList.Add(PasswordModel.Deserialize(getValues[id], id));
-            }
+                List<PasswordModel> retList = new List<PasswordModel>();
 
-            return retList; 
+                foreach (int id in getValues.Keys)
+                {
+                    retList.Add(PasswordModel.Deserialize(getValues[id], id));
+                }
+
+                return retList;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public void UpdateList()
         {
-            passwordCollection = passwordModels(DatabaseManager.Get("Passwords")).OrderBy(t=>t.Id).ToList();
+            try
+            {
+                passwordCollection = passwordModels(DatabaseManager.Get("Passwords")).OrderBy(t => t.Id).ToList();
+            }
+            catch(Exception ex)
+            {
+                PasswordCollection.Clear();
+            }
         }
         public int FindFirstId()
         {

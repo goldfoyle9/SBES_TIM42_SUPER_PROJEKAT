@@ -19,16 +19,23 @@ namespace Password_Manager.Commands.CardCommands
         }
         public override void Execute(object parameter)
         {
-            CardsModel card = viewModel.CardCollection.Find(x=>x.Id == (int)parameter);
-            viewModel.ExpirationDate = card.ExpirationDate;
-            viewModel.Country = card.Country;
-            viewModel.Additional = card.Additional;
-            viewModel.Number = card.Number;
-            viewModel.Nickname = card.Nickname;
-            viewModel.IssuanceDate = card.IssuanceDate;
-            viewModel.Name = card.Name;
-            viewModel.Type = card.Type;
-            CardsViewModel.SelectedID = (int)parameter;
+            try
+            {
+                CardsModel card = viewModel.CardCollection.Find(x => x.Id == (int)parameter);
+                viewModel.ExpirationDate = card.ExpirationDate;
+                viewModel.Country = card.Country;
+                viewModel.Additional = card.Additional;
+                viewModel.Number = card.Number;
+                viewModel.Nickname = card.Nickname;
+                viewModel.IssuanceDate = card.IssuanceDate;
+                viewModel.Name = card.Name;
+                viewModel.Type = card.Type;
+                CardsViewModel.SelectedID = (int)parameter;
+            }
+            catch (Exception ex)
+            {
+
+            }
 
         }
 

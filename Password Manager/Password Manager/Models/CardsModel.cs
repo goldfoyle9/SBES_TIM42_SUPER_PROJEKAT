@@ -61,6 +61,8 @@ namespace Password_Manager.Models
 
         public static CardsModel Deserialize(string value, int id)
         {
+            if (value == "")
+                return null;
             CardsModel model = new CardsModel();
             string[] array = value.Split('|');
             model.Nickname = array[0];

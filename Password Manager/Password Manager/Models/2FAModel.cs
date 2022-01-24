@@ -41,6 +41,8 @@ namespace Password_Manager.Models
 
         public static _2FAModel Deserialize(string value, int id)
         {
+            if (value == "")
+                return null;
             _2FAModel model = new _2FAModel();
             string[] array = value.Split('|');
             model.Nickname = array[0];

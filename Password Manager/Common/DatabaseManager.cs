@@ -23,7 +23,7 @@ namespace Common
                 query = $"UPDATE {tableName}  SET id = @id, VALUE = @data WHERE id = @id";
             }
             byte[] value = EncryptionManager.EncryptStringToBytes_Aes(data);
-          
+            if (value == null) return false;
             using (SqlCommand command = new SqlCommand(query, ConnectionManager.Connection))
             {
                 command.Parameters.AddWithValue("@id", id);
