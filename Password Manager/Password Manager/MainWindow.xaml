@@ -11,11 +11,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MySBES" 
-        Height="650" 
-        Width="1100"
+        Height="800" 
+        Width="1200"
         ResizeMode="NoResize"
         WindowStyle="None"
-        AllowsTransparency="True"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
@@ -168,11 +167,8 @@
        
         <!--// Background Color //-->
 
-        <Grid>
-            <Grid.Background>
-                <ImageBrush x:Name="img_bg" ImageSource="/Assets/bg_image.png" />
-
-            </Grid.Background>
+        <Grid Background="Black">
+           
             <!--// Background Image //-->
 
             <Grid x:Name="BG" PreviewMouseLeftButtonDown="BG_PreviewMouseLeftButtonDown" RenderTransformOrigin="0.5,0.5">
@@ -186,7 +182,7 @@
                 </Grid.RenderTransform>
 
                 <Grid.Background>
-                    <ImageBrush x:Name="img_bg1" ImageSource="/Assets/bg_image.png" />
+                    <ImageBrush x:Name="img_bg" ImageSource="/Assets/bg_image.png" />
 
                 </Grid.Background>
 
@@ -231,7 +227,7 @@
 
             <Grid   x:Name="nav_pnl"
                     HorizontalAlignment="Left"
-                    Width="70"
+                    Width="65"
                     Background="#2E333A">
 
                 <StackPanel x:Name="st_pnl">
@@ -272,7 +268,7 @@
                                       Grid.Column="0"
                                       VerticalAlignment="Center"
                                       HorizontalAlignment="Left"
-                                      Margin="20,20,0,40"
+                                      Margin="18,-20,0,0"
                                       Height="30"
                                       Width="30"
                                       BorderThickness="0"
@@ -303,7 +299,7 @@
                                                 Storyboard.TargetName="nav_pnl"
                                                 Storyboard.TargetProperty="Width"
                                                 BeginTime="0:0:0"
-                                                From="190" To="70"
+                                                From="230" To="65"
                                                 Duration="0:0:0.2">
 
                                             </DoubleAnimation>
@@ -325,7 +321,7 @@
                                                 Storyboard.TargetName="nav_pnl"
                                                 Storyboard.TargetProperty="Width"
                                                 BeginTime="0:0:0"
-                                                From="70" To="190"
+                                                From="65" To="230"
                                                 Duration="0:0:0.3">
 
                                             </DoubleAnimation>
@@ -595,7 +591,7 @@
             </Grid>
 
         </Grid>
-        <ContentControl Content="{Binding SelectedViewModel}" Margin="170,46,40,46"/>
+        <ContentControl Content="{Binding SelectedViewModel}" Margin="208,60,2,0"/>
     </Grid>
 
 </Window>
