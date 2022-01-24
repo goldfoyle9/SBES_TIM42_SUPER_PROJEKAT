@@ -28,6 +28,7 @@ namespace Password_Manager.Views
         public PasswordView()
         {
             InitializeComponent();
+            
             passwordViewModel = new PasswordViewModel();
             StackPanel.ItemsSource = passwordViewModel.PasswordCollection;
             if (timer == null)
@@ -53,7 +54,6 @@ namespace Password_Manager.Views
         {
             tb_username.IsReadOnly = true;
             tb_website.IsReadOnly = true;
-            pb_password.IsReadOnly = true;
             tb_addinfo.IsReadOnly = true;
             tb_nickname.IsReadOnly = true;
         }
@@ -62,7 +62,6 @@ namespace Password_Manager.Views
         {
             tb_username.IsReadOnly = false;
             tb_website.IsReadOnly = false;
-            pb_password.IsReadOnly = false;
             tb_addinfo.IsReadOnly = false;
             tb_nickname.IsReadOnly = false;
         }
@@ -71,20 +70,25 @@ namespace Password_Manager.Views
         {
             tb_username.IsReadOnly = false;
             tb_website.IsReadOnly = false;
-            pb_password.IsReadOnly = false;
             tb_addinfo.IsReadOnly = false;
             tb_nickname.IsReadOnly = false;
             tb_username.Text = "";
             tb_website.Text = "";
-            pb_password.Text = "";
+            pb_password.Password = "";
             tb_addinfo.Text = "";
             tb_nickname.Text = "";
             PasswordViewModel.SelectedID = -1;
         }
 
+<<<<<<< HEAD
         private void StackPanel_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
         {
 
+=======
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(pb_password.Password);
+>>>>>>> 15ace08608eee739dbd1ed52e159f65d2e5128b5
         }
     }
 }
