@@ -5,6 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Password_Manager.Views" xmlns:controls="clr-namespace:Password_Manager.Controls"
              mc:Ignorable="d" 
+<<<<<<< HEAD
+<<<<<<< HEAD
+             d:DesignWidth="800" Height="419">
+=======
+             d:DesignHeight="450" d:DesignWidth="800">
+>>>>>>> parent of 1ac7b72 (one of the last ones)
+    <Grid>
+        <Button Content="Peepee" HorizontalAlignment="Left" Margin="398,186,0,0" VerticalAlignment="Top" Width="198" Height="111"/>
+=======
                       d:DesignHeight="740" d:DesignWidth="990">
 
     <Grid Width="990" Height="740">
@@ -31,6 +40,7 @@
         <Label Content="Additional" HorizontalAlignment="Left" Margin="243,185,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
         <Button Name="deletebtn" Content="Delete" HorizontalAlignment="Left" Margin="787,273,0,0" VerticalAlignment="Top" Width="62" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedID}"/>
         <Button Name="addbtn" Content="Clear" HorizontalAlignment="Left" Margin="720,273,0,0" VerticalAlignment="Top" Width="62" Click="addbtn_Click" />
+>>>>>>> 15ace08608eee739dbd1ed52e159f65d2e5128b5
 
     </Grid>
 </UserControl>
