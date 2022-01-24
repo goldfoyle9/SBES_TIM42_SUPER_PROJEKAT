@@ -29,7 +29,7 @@ namespace Password_Manager
         }
         private void timer_Tick(object sender, EventArgs e)
         {
-            Window window = new MainWindow();
+            Window window = new PinWindow();
             window.Show();
             timer.Stop();
             this.Close();
