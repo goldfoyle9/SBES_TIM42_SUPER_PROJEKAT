@@ -79,19 +79,9 @@ namespace Password_Manager.Views
             tb_nickname.Text = "";
             PasswordViewModel.SelectedID = -1;
         }
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-        private void StackPanel_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
-        {
-
-=======
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             Clipboard.SetText(pb_password.Password);
->>>>>>> 15ace08608eee739dbd1ed52e159f65d2e5128b5
         }
-=======
->>>>>>> parent of 1ac7b72 (one of the last ones)
     }
 }
