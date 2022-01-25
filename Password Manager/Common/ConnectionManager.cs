@@ -13,10 +13,14 @@ namespace Common
         public static SqlConnection Connection { get { return connection; } }
         public ConnectionManager()
         {
-            connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\minec\source\repos\SBES_TIM42_SUPER_PROJEKAT\Password Manager\Common\Database1.mdf; Integrated Security = True");
+            string executable = Environment.CurrentDirectory;
+          
+            AppDomain.CurrentDomain.SetData("DataDirectory", executable);
+          
+            connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = |DataDirectory|\Database1.mdf; Integrated Security = True");
             connection.Open();
         }
+ 
 
-       
     }
 }

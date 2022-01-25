@@ -51,10 +51,12 @@ namespace Password_Manager
                 int numOfTries = 0;
                 while(hasAccepted == false && numOfTries < 3)
                 {
+
                     numOfTries++;
+
                     hasAccepted = Common.Formatter.SetUpUSB();
                 }
-                if (numOfTries == 3)
+                if (hasAccepted)
                 {
                     MessageBox.Show("App closing due to not providing valid removable drive.");
                     Thread.Sleep(3000);

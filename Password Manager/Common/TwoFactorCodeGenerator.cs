@@ -20,8 +20,9 @@ namespace Common
         private static string GenerateCode() 
         {
             string key = Authenticator.GenerateSalt(16);
-            totp = new Totp(Convert.FromBase64String(key), mode: OtpHashMode.Sha512, step: 60, totpSize: 6);
+            totp = new Totp(Convert.FromBase64String(key), mode: OtpHashMode.Sha512, step: 120, totpSize: 6);
             var TotpCode = totp.ComputeTotp(DateTime.UtcNow);
+            
             return TotpCode;
         }
 
@@ -51,11 +52,14 @@ namespace Common
             }
             
         }
-        public static string GenerateCode(string thing)
+        public static string GenerateCode(string thing, out int secondsLeft)
         {
+            secondsLeft = 0;
             try
             {
+
                 totp = new Totp(Base32Encoding.ToBytes(thing));
+                secondsLeft = totp.RemainingSeconds();
                 var TotpCode = totp.ComputeTotp(DateTime.UtcNow);
                 return TotpCode;
             }

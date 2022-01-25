@@ -5,42 +5,66 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Password_Manager.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="740" d:DesignWidth="990">
+             d:DesignWidth="800" Height="419">
 
-    <Grid Width="990" Height="740">
-        <ItemsControl Background="White" x:Name="StackPanel" Margin="10,33,752,10">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Margin="0,0,5,5"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button Command="{Binding DataContext.GetSpecificCard, RelativeSource={RelativeSource AncestorType=Grid}}" CommandParameter="{Binding Id}" Content="{Binding Nickname}" Margin="0,0,5,5" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+    <Grid Width="800">
+        <Border
+            BorderThickness="0.5"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Width="800"
+            Height="419" Margin="0,0,0,0">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="White" Opacity="0.5"/>
+            </Border.BorderBrush>
+            <Border.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5"/>
+            </Border.Background>
+            <Canvas>
+                <Grid Width="800" Height="419">
+                    <ItemsControl  x:Name="StackPanel" Margin="10,45,474,-2">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Margin="0,0,0,5" Width="314"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding DataContext.GetSpecificCard, RelativeSource={RelativeSource AncestorType=Grid}}" CommandParameter="{Binding Id}" Content="{Binding Nickname}" Margin="0,0,5,5" FontSize="20" Width="290"  Height="40"  Background="#FF323232" Foreground="#FFAEAEAE" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.Template>
+                            <ControlTemplate>
+                                <ScrollViewer x:Name="ScrollViewer" Padding="{TemplateBinding Padding}">
+                                    <ItemsPresenter />
+                                </ScrollViewer>
+                            </ControlTemplate>
+                        </ItemsControl.Template>
+                    </ItemsControl>
 
-        <TextBox Name="tb_nickname" HorizontalAlignment="Left" Height="24" Margin="377,100,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Nickname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-        <Button Content="Save" HorizontalAlignment="Left" Margin="858,273,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click" Command="{Binding AddCommand}" CommandParameter="Identity"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="243,33,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click_1"/>
-        <Label Content="Nickname" HorizontalAlignment="Left" Margin="243,100,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
-        <TextBox x:Name="tb_name" HorizontalAlignment="Left" Height="24" Margin="716,100,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-        <Label Content="Name on ID" HorizontalAlignment="Left" Margin="582,100,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
-        <TextBox x:Name="tb_number" HorizontalAlignment="Left" Height="24" Margin="377,129,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-        <Label Content="ID Number" HorizontalAlignment="Left" Margin="243,129,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
-        <TextBox x:Name="tb_type" HorizontalAlignment="Left" Height="24" Margin="716,129,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-        <Label Content="ID Type" HorizontalAlignment="Left" Margin="582,129,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
-        <TextBox x:Name="tb_country" HorizontalAlignment="Left" Height="24" Margin="376,158,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-        <Label Content="Country" HorizontalAlignment="Left" Margin="242,158,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
-        <TextBox x:Name="tb_issuance_date" HorizontalAlignment="Left" Height="24" Margin="716,158,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding IssuanceDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-        <Label Content="Issuance Date" HorizontalAlignment="Left" Margin="582,158,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
-        <TextBox x:Name="tb_expiration_date" HorizontalAlignment="Left" Height="24" Margin="376,187,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding ExpirationDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-        <Label Content="Expiration Date" HorizontalAlignment="Left" Margin="242,187,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
-        <TextBox x:Name="tb_additional" HorizontalAlignment="Left" Height="24" Margin="716,187,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Additional, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-        <Label Content="Additional" HorizontalAlignment="Left" Margin="582,187,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
-        <Button Name="deletebtn" Content="Delete" HorizontalAlignment="Left" Margin="787,273,0,0" VerticalAlignment="Top" Width="62" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedID}"/>
-        <Button Name="addbtn" Content="Clear" HorizontalAlignment="Left" Margin="720,273,0,0" VerticalAlignment="Top" Width="62" Click="addbtn_Click" />
+                    <TextBox Name="tb_nickname" HorizontalAlignment="Left" Width="346" Background="#FF323232" Foreground="#FFAEAEAE" Height="24" Margin="423,70,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"  TextChanged="TextBox_TextChanged" Text="{Binding Nickname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <Label Content="Nickname" HorizontalAlignment="Left" Margin="353,70,0,0" VerticalAlignment="Top" Background="#FF323232" Foreground="#FFAEAEAE" Width="65" Height="24" />
+                    <TextBox x:Name="tb_name" HorizontalAlignment="Left" Width="346" Background="#FF323232" Foreground="#FFAEAEAE" Height="24" Margin="423,230,-11,0" TextWrapping="Wrap"  VerticalAlignment="Top"  TextChanged="TextBox_TextChanged" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <Label Content="ID name" HorizontalAlignment="Left" Margin="353,230,0,0" VerticalAlignment="Top" Background="#FF323232" Foreground="#FFAEAEAE" Width="65" Height="24"/>
+                    <TextBox x:Name="tb_number" HorizontalAlignment="Left" Width="346" Background="#FF323232" Foreground="#FFAEAEAE" Height="24" Margin="423,110,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"  TextChanged="TextBox_TextChanged" Text="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <Label Content="ID Number" HorizontalAlignment="Left" Margin="353,110,0,0" VerticalAlignment="Top" Background="#FF323232" Foreground="#FFAEAEAE" Width="65" Height="24"/>
+                    <TextBox x:Name="tb_type" HorizontalAlignment="Left" Width="346" Background="#FF323232" Foreground="#FFAEAEAE" Height="24" Margin="423,270,-11,0" TextWrapping="Wrap"  VerticalAlignment="Top"  TextChanged="TextBox_TextChanged" Text="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <Label Content="ID Type" HorizontalAlignment="Left" Margin="353,270,0,0" VerticalAlignment="Top" Background="#FF323232" Foreground="#FFAEAEAE" Width="65" Height="24"/>
+                    <TextBox x:Name="tb_country" HorizontalAlignment="Left" Width="346" Background="#FF323232" Foreground="#FFAEAEAE" Height="24" Margin="423,150,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"  TextChanged="TextBox_TextChanged" Text="{Binding Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <Label Content="Country" HorizontalAlignment="Left" Margin="353,150,0,0" VerticalAlignment="Top" Background="#FF323232" Foreground="#FFAEAEAE" Width="65" Height="24"/>
+                    <TextBox x:Name="tb_issuance_date" HorizontalAlignment="Left" Height="24" Margin="423,310,-11,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="346" Background="#FF323232" Foreground="#FFAEAEAE"  TextChanged="TextBox_TextChanged" Text="{Binding IssuanceDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <Label Content="Iss. Date" HorizontalAlignment="Left" Margin="353,310,0,0" VerticalAlignment="Top" Background="#FF323232" Foreground="#FFAEAEAE" Width="65" Height="24" RenderTransformOrigin="0.969,0.667"/>
+                    <TextBox x:Name="tb_expiration_date" HorizontalAlignment="Left" Width="346" Background="#FF323232" Foreground="#FFAEAEAE" Height="24" Margin="423,190,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" TextChanged="TextBox_TextChanged" Text="{Binding ExpirationDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <Label Content="Exp. date" HorizontalAlignment="Left" Margin="353,190,0,0" VerticalAlignment="Top"  Background="#FF323232" Foreground="#FFAEAEAE" Width="65" Height="24"/>
+                    <TextBox x:Name="tb_additional" HorizontalAlignment="Left" Width="346" Background="#FF323232" Foreground="#FFAEAEAE" Height="24" Margin="423,350,-11,0" TextWrapping="Wrap"  VerticalAlignment="Top"  TextChanged="TextBox_TextChanged" Text="{Binding Additional, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <Label Content="Additional" HorizontalAlignment="Left" Margin="353,350,0,0" VerticalAlignment="Top" Background="#FF323232" Foreground="#FFAEAEAE" Width="65" Height="24"/>
+                    <Button Name="deletebtn" Content="Delete" HorizontalAlignment="Left" Margin="640,389,0,0" VerticalAlignment="Top" Width="62" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedID}" BorderBrush="White"  Background="#FF323232" Foreground="#FFAEAEAE"/>
+                    <Button Name="addbtn" Content="Clear" HorizontalAlignment="Left" Margin="570,389,0,0" VerticalAlignment="Top"  Width="62" BorderBrush="White" Background="#FF323232" Foreground="#FFAEAEAE" Click="addbtn_Click" />
+                    <Button  Width="62" BorderBrush="White" Background="#FF323232" Foreground="#FFAEAEAE" Content="Save" HorizontalAlignment="Left" Margin="707,389,0,0" VerticalAlignment="Top" Click="Button_Click" Command="{Binding AddCommand}" CommandParameter="Password"/>
+                    <Button Content="Edit" HorizontalAlignment="Left" Margin="377,33,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click_1" BorderBrush="White" Background="#FF323232" Foreground="#FFAEAEAE"/>
 
+                </Grid>
+            </Canvas>
+        </Border>
     </Grid>
 </UserControl>

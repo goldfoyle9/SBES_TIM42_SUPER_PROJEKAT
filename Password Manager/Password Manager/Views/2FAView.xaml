@@ -5,32 +5,58 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Password_Manager.Views" xmlns:controls="clr-namespace:Password_Manager.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="740" d:DesignWidth="990">
+             d:DesignWidth="800" Height="419">
 
-    <Grid Width="990" Height="740">
-        <ItemsControl Background="White" x:Name="StackPanel" Margin="10,33,752,10">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Margin="0,0,5,5"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button Command="{Binding DataContext.GetSpecific2FA, RelativeSource={RelativeSource AncestorType=Grid}}" CommandParameter="{Binding Id}" Content="{Binding Nickname}" Margin="0,0,5,5" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-        <TextBlock Name="generated" Background="Red" Foreground="AliceBlue" TextAlignment="Center" FontWeight="ExtraBlack" FontSize="48" Text="" Margin="582,127,70,531"/>
-        <TextBox Name="tb_nickname" HorizontalAlignment="Left" Height="24" Margin="377,127,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Nickname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-        <Button Content="Save" HorizontalAlignment="Left" Margin="858,273,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click" Command="{Binding AddCommand}" CommandParameter="Identity"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="243,33,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click_1"/>
-        <Label Content="Nickname" HorizontalAlignment="Left" Margin="243,127,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
-        <controls:PassBox x:Name="pb_secret" HorizontalAlignment="Left" Height="24" Margin="377,156,0,0"  VerticalAlignment="Top" Width="200" Password="{Binding Secret, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <Label Content="2FA Secret" HorizontalAlignment="Left" Margin="243,156,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
-        <TextBox x:Name="tb_additional" HorizontalAlignment="Left" Height="24" Margin="377,185,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextChanged="TextBox_TextChanged" Text="{Binding Additional, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-        <Label Content="Additional" HorizontalAlignment="Left" Margin="243,185,0,0" VerticalAlignment="Top" Background="White" Width="116" Height="24"/>
-        <Button Name="deletebtn" Content="Delete" HorizontalAlignment="Left" Margin="787,273,0,0" VerticalAlignment="Top" Width="62" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedID}"/>
-        <Button Name="addbtn" Content="Clear" HorizontalAlignment="Left" Margin="720,273,0,0" VerticalAlignment="Top" Width="62" Click="addbtn_Click" />
-
+    <Grid Width="800">
+        <Border
+            BorderThickness="0.5"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Width="800"
+            Height="419" Margin="0,0,0,0">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="White" Opacity="0.5"/>
+            </Border.BorderBrush>
+            <Border.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5"/>
+            </Border.Background>
+            <Canvas>
+                <Grid Width="800" Height="419">
+                    <ItemsControl x:Name="StackPanel" Margin="10,45,474,-2">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Margin="0,0,0,5" Width="314"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Width="290" Height="40" Background="#FF323232" Foreground="#FFAEAEAE" Command="{Binding DataContext.GetSpecific2FA, RelativeSource={RelativeSource AncestorType=Grid}}" CommandParameter="{Binding Id}" Content="{Binding Nickname}" Margin="0,0,5,5" FontSize="20" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.Template>
+                            <ControlTemplate>
+                                <ScrollViewer x:Name="ScrollViewer" Padding="{TemplateBinding Padding}">
+                                    <ItemsPresenter />
+                                </ScrollViewer>
+                            </ControlTemplate>
+                        </ItemsControl.Template>
+                    </ItemsControl>
+                    <TextBlock Width="300" Name="generated" Foreground="Black" TextAlignment="Center" FontWeight="ExtraBlack" FontSize="48" Text="" Margin="419,76,81,277"/>
+                    <TextBox Name="tb_nickname" HorizontalAlignment="Left" Width="346" Background="#FF323232" Foreground="#FFAEAEAE" Height="24" Margin="423,161,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"  TextChanged="TextBox_TextChanged" Text="{Binding Nickname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <Button  Width="62" BorderBrush="White" Background="#FF323232" Foreground="#FFAEAEAE" Content="Save" HorizontalAlignment="Left" Margin="728,369,0,0" VerticalAlignment="Top" Click="Button_Click" Command="{Binding AddCommand}" CommandParameter="Password"/>
+                    <Button Content="Edit" HorizontalAlignment="Left" Margin="377,33,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click_1" BorderBrush="White" Background="#FF323232" Foreground="#FFAEAEAE"/>
+                    <Label Content="Nickname" HorizontalAlignment="Left" Margin="351,161,0,0" VerticalAlignment="Top"  Background="#FF323232" Foreground="#FFAEAEAE" Width="65" Height="24"/>
+                    <controls:PassBox x:Name="pb_secret" HorizontalAlignment="Left" Width="346" Background="#FF323232" Foreground="#FFAEAEAE" Height="24" Margin="423,227,0,0"  VerticalAlignment="Top" Password="{Binding Secret, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <Label Content="2FA Secret" HorizontalAlignment="Left" Margin="350,227,0,0" VerticalAlignment="Top" Background="#FF323232" Foreground="#FFAEAEAE" Width="65" Height="24"/>
+                    <TextBox x:Name="tb_additional" HorizontalAlignment="Left" Width="346" Background="#FF323232" Foreground="#FFAEAEAE" Height="24" Margin="423,293,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" TextChanged="TextBox_TextChanged" Text="{Binding Additional, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <Label Content="Additional" HorizontalAlignment="Left" Margin="350,293,0,0" VerticalAlignment="Top" Background="#FF323232" Foreground="#FFAEAEAE" Width="65" Height="24"/>
+                    <Button Name="deletebtn" Content="Delete" HorizontalAlignment="Left" Margin="661,368,0,0" VerticalAlignment="Top" Width="62" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedID}" BorderBrush="White"  Background="#FF323232" Foreground="#FFAEAEAE"/>
+                    <Button Name="addbtn" Content="Clear" HorizontalAlignment="Left" Margin="591,368,0,0" VerticalAlignment="Top"  Width="62" BorderBrush="White" Background="#FF323232" Foreground="#FFAEAEAE" Click="addbtn_Click" />
+                    <Button  Width="62" BorderBrush="White" Background="#FF323232" Foreground="#FFAEAEAE" Content="Save" HorizontalAlignment="Left" Margin="728,369,0,0" VerticalAlignment="Top" Click="Button_Click" Command="{Binding AddCommand}" CommandParameter="Password"/>
+                    <Button Content="Edit" HorizontalAlignment="Left" Margin="377,33,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click_1" BorderBrush="White" Background="#FF323232" Foreground="#FFAEAEAE"/>
+                </Grid>
+            </Canvas>
+        </Border>
     </Grid>
+
 </UserControl>

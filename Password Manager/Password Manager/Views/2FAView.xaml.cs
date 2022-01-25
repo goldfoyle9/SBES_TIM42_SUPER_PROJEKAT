@@ -25,6 +25,7 @@ namespace Password_Manager.Views
     {
         DispatcherTimer timer;
         _2FAViewModel viewModel;
+        int secondsLeft;
         public _2FAView()
         {
             InitializeComponent();
@@ -43,7 +44,21 @@ namespace Password_Manager.Views
             viewModel.UpdateList();
             StackPanel.ItemsSource = viewModel._2FACollection;
             deletebtn.CommandParameter = _2FAViewModel.SelectedID;
-            generated.Text = TwoFactorCodeGenerator.GenerateCode(pb_secret.Password);
+            generated.Text = TwoFactorCodeGenerator.GenerateCode(pb_secret.Password, out secondsLeft);
+            if (secondsLeft < 5)
+            {
+                generated.Background = Brushes.Red;
+            }
+            else if (secondsLeft < 10)
+            {
+                generated.Background = Brushes.Orange;
+            }
+          
+            else
+            {
+                generated.Background = Brushes.Green;
+            }
+
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

@@ -58,12 +58,12 @@ namespace Password_Manager
             try
             {
                 string pin = pinBox1.Password + pinBox1_Copy.Password + pinBox1_Copy1.Password + pinBox1_Copy2.Password + pinBox1_Copy3.Password + pinBox1_Copy4.Password;
-                using (StreamReader sr = new StreamReader("G:\\pin"))
+                using (StreamReader sr = new StreamReader($"{Environment.GetEnvironmentVariable("keydrive", EnvironmentVariableTarget.User)}:\\pin"))
                     if (pin == sr.ReadToEnd().Trim())
                     {
                         Window window = new MainWindow();
                         window.Show();
-                        this.Close();
+                        this.Close();   
                     }
             }
             catch (Exception ex)
