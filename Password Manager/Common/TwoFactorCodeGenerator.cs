@@ -40,11 +40,17 @@ namespace Common
             TwilioClient.Init(accountSid, authToken);
             var totp = GenerateCode();
 
-            var message = MessageResource.Create(
-                body: $"Your MySBES authentication code is: {totp}",
-                from: new Twilio.Types.PhoneNumber("+16076008655"),
-                to: new Twilio.Types.PhoneNumber(phoneNumber)
-            );
+            try
+            {
+                var message = MessageResource.Create(
+                    body: $"Your MySBES authentication code is: {totp}",
+                    from: new Twilio.Types.PhoneNumber("+16076008655"),
+                    to: new Twilio.Types.PhoneNumber(phoneNumber)
+                );
+            }catch(Exception e)
+            {
+
+            }
             TwoFactorCodeGenerator.phoneNumber = phoneNumber.Trim();
             while(TwoFactorCodeGenerator.phoneNumber.Length < 16)
             {

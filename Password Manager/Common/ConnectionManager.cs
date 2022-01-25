@@ -17,7 +17,7 @@ namespace Common
           
             AppDomain.CurrentDomain.SetData("DataDirectory", executable);
           
-            connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = |DataDirectory|\Database1.mdf; Integrated Security = True");
+            connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\HP\Desktop\sbes5\SBES_TIM42_SUPER_PROJEKAT\Password Manager\Common\Database1.mdf; Integrated Security = True");
             connection.Open();
         }
  
