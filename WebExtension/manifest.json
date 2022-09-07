@@ -1,0 +1,26 @@
+{
+    "name": "Notify!",
+    "description": "A Google Chrome extension!",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "scripting",
+        "storage"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["http://*/*", "https://*/*"],
+            "js": ["populate.js"],
+            "css": [ "popup.css" ]
+        }
+    ]
+   
+}

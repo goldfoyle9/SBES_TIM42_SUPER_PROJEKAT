@@ -77,7 +77,7 @@ namespace Password_Manager.ViewModels
         {
             try
             {
-                CardCollection = cardModels(DatabaseManager.Get("Cards")).OrderBy(x => x.Id).ToList();
+                CardCollection = cardModels(DatabaseManager.Get("Cards", "")).OrderBy(x => x.Id).ToList();
             }
             catch (Exception ex)
             {

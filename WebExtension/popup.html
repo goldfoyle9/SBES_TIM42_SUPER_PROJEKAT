@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+      <div class="container" id="myDiv">
+        <p>Welcome to MySBES</p>
+        <hr>
+        <div class="form-group">
+          <label for="pinCode">Pin code</label>
+          <input id="pinCode" type="text" name="pinCode" class="form-control">
+        </div>
+      </div> 
+    </div class="container-fluid">
+    <div class="row">
+      <div class="col text-center">
+        <button class="btn btn-dark btn-sm" id='authButton'>Unlock</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <button class="btn btn-dark btn-sm" id='loadButton' hidden>Load</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <button class="btn btn-dark btn-sm" id='fillButton' hidden>Fill</button>
+      </div>
+    </div>
+  
+    <select class="form-select" id="credentials" hidden>
+
+    </select> 
+   <script src="popup.js"></script>
+
+  
+  </body>
+</html>

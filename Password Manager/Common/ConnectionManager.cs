@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -11,16 +12,21 @@ namespace Common
     {
         private static SqlConnection connection;
         public static SqlConnection Connection { get { return connection; } }
+
+       
         public ConnectionManager()
         {
-            string executable = Environment.CurrentDirectory;
-          
-            AppDomain.CurrentDomain.SetData("DataDirectory", executable);
-          
-            connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\HP\Desktop\sbes5\SBES_TIM42_SUPER_PROJEKAT\Password Manager\Common\Database1.mdf; Integrated Security = True");
-            connection.Open();
+            
         }
  
+        public static void Close()
+        {
+            connection.Close();
+        }
 
+        public static void Open()
+        {
+            connection.Open();
+        }
     }
 }

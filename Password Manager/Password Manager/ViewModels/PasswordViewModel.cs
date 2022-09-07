@@ -135,7 +135,13 @@ namespace Password_Manager.ViewModels
         {
             try
             {
-                passwordCollection = passwordModels(DatabaseManager.Get("Passwords")).OrderBy(t => t.Id).ToList();
+
+                passwordCollection = passwordModels(DatabaseManager.Get("Passwords", ""));
+                passwordCollection.RemoveAll(x => x == null);
+                if(passwordCollection != null)
+                {
+                    passwordCollection = passwordCollection.OrderBy(x => x.Id).ToList();
+                }
             }
             catch(Exception ex)
             {

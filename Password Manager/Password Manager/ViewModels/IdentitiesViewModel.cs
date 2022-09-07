@@ -87,7 +87,7 @@ namespace Password_Manager.ViewModels
         {
             try
             {
-                IdentityCollection = identityModels(DatabaseManager.Get("Identities")).OrderBy(t => t.Id).ToList();
+                IdentityCollection = identityModels(DatabaseManager.Get("Identities", "")).OrderBy(t => t.Id).ToList();
             }
             catch (Exception ex)
             {

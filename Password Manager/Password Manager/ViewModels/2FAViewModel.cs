@@ -70,7 +70,7 @@ namespace Password_Manager.ViewModels
             try
             {
 
-                _2FACollection = _2FAModels(DatabaseManager.Get("_2FA")).OrderBy(x => x.Id).ToList();
+                _2FACollection = _2FAModels(DatabaseManager.Get("_2FA", "")).OrderBy(x => x.Id).ToList();
             }
             catch(Exception ex)
             {

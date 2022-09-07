@@ -28,7 +28,7 @@ namespace Password_Manager.Views
         public PasswordView()
         {
             InitializeComponent();
-            
+            PasswordViewModel.SelectedID = -1;
             passwordViewModel = new PasswordViewModel();
             StackPanel.ItemsSource = passwordViewModel.PasswordCollection;
             if (timer == null)
