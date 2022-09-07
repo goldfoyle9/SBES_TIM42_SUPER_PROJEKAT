@@ -9,3 +9,7 @@ Korisnik ima i uvid u sve pokusaje logovanja i sve izvrsene/pokusane akcije na a
 Putem kombinacije tipki korisnik moze da otvori jednostavniju verziju aplikacije pomocu koje moze da automatski popuni podatke na pretrazivacu/aplikaciji.
 Korisnik moze da unese podatke o svojoj platnoj kartici kojima moze pristupati prilikom unosa tih istih podataka na neki sajt.
 Za cuvanje lozinki u bazi podataka, koristi se AES-256. Aplikacija je odradjena koriscenjem .NET Framework-a (C#). 
+
+PREDMET PROJEKAT NADOGRADNJA:
+
+Kao nadogradnja za predmet projekat napravljena je web ekstenzija koja salje API pozive ka desktop aplikaciji, i na osnovu trenutno ucitane web stranice, povlaci kombinaciju username/password za datu stranicu. Ukoliko ima vise kombinacija, korisnik moze da izabere jednu od njih i klikom na button "Fill", ispuni polja za unosenje username/email/password.
